@@ -62,4 +62,22 @@ public class UserDAO {
         }
     }
 
+    /**
+     * 3. Update
+     * Updates the password for a specific user in the database.
+     *
+     * @param username The username of the account to be updated.
+     * @param newPassword The new password to be set for the user.
+     */
+    public void updatePassword(String username, String newPassword) {
+        String sql = "UPDATE USERS SET password = ? WHERE username = ?";
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, newPassword);
+            pstmt.setString(2, username);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
