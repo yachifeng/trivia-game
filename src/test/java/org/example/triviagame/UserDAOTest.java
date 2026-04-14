@@ -49,5 +49,20 @@ public class UserDAOTest {
         assertTrue(loginSuccess, "Login should succeed for registered user.");
     }
 
+    /**
+     * Tests the update functionality (Update - O02 requirement) to ensure
+     * user information can be modified successfully in the database.
+     */
+    @Test
+    public void testUpdateUserPassword() {
+        // 1. Create a new user (Insert - O02 Requirement)
+        userDAO.registerUser("updateUser", "oldPass", "user");
 
+        // 2. Update the user's password (Update - O02 Requirement)
+        userDAO.updatePassword("updateUser", "newPass");
+
+        // 3. Verify old password fails and new password succeeds (Read/Validation)
+        assertFalse(userDAO.validateLogin("updateUser", "oldPass"), "Old password should not work.");
+        assertTrue(userDAO.validateLogin("updateUser", "newPass"), "New password should be valid.");
+    }
 }
