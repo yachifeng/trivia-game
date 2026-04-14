@@ -80,4 +80,21 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 4. Delete
+     * Permanently removes a user record from the database based on their username.
+     *
+     * @param username The username of the account to be deleted.
+     */
+    public void deleteUser(String username) {
+        String sql = "DELETE FROM USERS WHERE username = ?";
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, username);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
