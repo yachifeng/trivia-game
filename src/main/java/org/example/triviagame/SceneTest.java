@@ -15,7 +15,7 @@ public class SceneTest extends Application {
     @Override
     public void start(Stage stage) {
         stage.setTitle(TITLE);
-        stage.setScene(SceneFactory.create(SceneType.ADMINTOOLS)); // <-- Change scene to load here
+        stage.setScene(SceneFactory.create(SceneType.LEADERBOARD)); // <-- Change scene to load here
         stage.show();
     }
     /**
