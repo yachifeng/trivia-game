@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"> <!-- fx:controller="CONTROLLER_NAME" (Put back in to the left once a controller is made) -->
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label text="Welcome, Admin">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="165.0" layoutY="10.0" text="AdminUserName">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Region prefHeight="50.0" prefWidth="600.0" />
+            <VBox prefHeight="205.0" prefWidth="600.0">
+               <children>
+                  <Label text="Question Management Tools:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="600.0" spacing="25.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Add Category" />
+                        <Button mnemonicParsing="false" text="Remove Category" />
+                      <Button mnemonicParsing="false" text="Create Question" />
+                        <Button mnemonicParsing="false" text="Delete Question" />
+                     </children>
+                  </HBox>
+                  <Label layoutX="10.0" layoutY="10.0" text="User Management Tools:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="30.0" prefHeight="47.0" prefWidth="600.0" spacing="25.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Promote User" />
+                        <Button mnemonicParsing="false" text="Demote User" />
+                        <Button mnemonicParsing="false" text="Delete User" />
+                     </children>
+                  </HBox>
+                  <Label text="Leaderboard Management Tools:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="97.0" prefHeight="47.0" prefWidth="600.0" spacing="25.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Delete Leaderboard Entry" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
