@@ -41,4 +41,25 @@ public class UserDAO {
         }
     }
 
+    /**
+     * 2. Read
+     * Validates user credentials by checking if the username and password match a record in the database.
+     *
+     * @param username The username entered by the user.
+     * @param password The password entered by the user.
+     * @return true if a matching record is found; false otherwise.
+     */
+    public boolean validateLogin(String username, String password) {
+        String sql = "SELECT * FROM USERS WHERE username = ? AND password = ?";
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            ResultSet rs = pstmt.executeQuery();
+            return rs.next();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }
