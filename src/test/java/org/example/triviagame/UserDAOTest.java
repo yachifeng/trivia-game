@@ -65,4 +65,36 @@ public class UserDAOTest {
         assertFalse(userDAO.validateLogin("updateUser", "oldPass"), "Old password should not work.");
         assertTrue(userDAO.validateLogin("updateUser", "newPass"), "New password should be valid.");
     }
+
+    /**
+     * Tests the user deletion functionality to ensure a user
+     * can no longer log in after being removed from the database.
+     */
+    @Test
+    public void testDeleteUser() {
+        // test Delete (for ID: O02)
+        userDAO.registerUser("deleteMe", "123", "user");
+        userDAO.deleteUser("deleteMe");
+        assertFalse(userDAO.validateLogin("deleteMe", "123"), "User should not exist after deletion.");
+    }
+
+    /**
+     * Tests the input validation logic (Security improvement) to ensure
+     * that blank or null values are not allowed for user registration.
+     */
+    @Test
+    public void testInvalidRegistrationInputs() {
+        // Test null values
+        assertFalse(userDAO.registerUser(null, "pass", "user"), "Should fail for null username.");
+
+        // Test empty strings
+        assertFalse(userDAO.registerUser("", "pass", "user"), "Should fail for empty username.");
+
+        // Test blank strings (whitespace only)
+        assertFalse(userDAO.registerUser("   ", "pass", "user"), "Should fail for blank username.");
+
+        // Test null/empty password
+        assertFalse(userDAO.registerUser("validUser", null, "user"), "Should fail for null password.");
+        assertFalse(userDAO.registerUser("validUser", "", "user"), "Should fail for empty password.");
+    }
 }
