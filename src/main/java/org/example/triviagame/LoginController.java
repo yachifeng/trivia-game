@@ -35,5 +35,20 @@ public class LoginController {
         }
     }
 
+    /**
+     * Handles the register button action by creating a new user account in the database.
+     * Assigns a default role of "user" to new registrations and provides status feedback.
+     */
+    @FXML
+    private void handleRegister() {
+        String user = usernameField.getText();
+        String pass = passwordField.getText();
+        if (userDAO.registerUser(user, pass, "user")) {
+            statusLabel.setText("Registration Successful!");
+            statusLabel.setTextFill(javafx.scene.paint.Color.BLUE);
+        } else {
+            statusLabel.setText("Registration failed.");
+        }
+    }
 }
 
