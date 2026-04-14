@@ -10,6 +10,7 @@ package org.example.triviagame;
 
 public enum SceneType {
     LOGIN,
-    ADMINTOOLS
+    ADMINTOOLS,
+    LEADERBOARD
 }
 

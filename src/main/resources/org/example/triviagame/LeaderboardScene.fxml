@@ -19,4 +19,4 @@
 
     <Button text="Back" onAction="#handleBack"/>
 
-</VBox>w
+</VBox>
