@@ -1,7 +1,6 @@
 package org.example.triviagame;
 
 
-
 /**
  * @author Anthony Ou
  * @version 0.1.0
