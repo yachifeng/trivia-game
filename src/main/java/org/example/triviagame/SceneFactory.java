@@ -18,6 +18,7 @@ public class SceneFactory {
         return switch (type){
             case LOGIN -> buildLogin();
             case ADMINTOOLS -> buildAdminTools();
+            case LEADERBOARD -> buildLeaderboard();
         };
     }
 
@@ -47,6 +48,18 @@ public class SceneFactory {
             return new Scene(root);
         } catch(IOException e){
             System.out.println("Failed to load Login Scene");
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static Scene buildLeaderboard() {
+        FXMLLoader loginLoader = new FXMLLoader(SceneFactory.class.getResource("/org/example/triviagame/LeaderboardScene.fxml"));
+        try {
+            System.out.println(SceneFactory.class.getResource("/org/example/triviagame/LeaderboardScene.fxml"));
+            Parent root = loginLoader.load();
+            return new Scene(root);
+        } catch (IOException e) {
+            System.out.println("Failed to load Leaderboard Scene");
             throw new RuntimeException(e);
         }
     }
