@@ -33,9 +33,9 @@ public class LeaderboardController {
     // This will initialize the leaderboard scene and have the display logic.
     public void initialize() {
         System.out.println("Leaderboard scene loaded");
-        rankColumn.setCellValueFactory(cellData -> cellData.getValue().getRank());
-        usernameColumn.setCellValueFactory(cellData -> cellData.getValue().getUsername());
-        scoreColumn.setCellValueFactory(cellData -> cellData.getValue().getScore());
+        rankColumn.setCellValueFactory(cellData -> cellData.getValue().rankProperty());
+        usernameColumn.setCellValueFactory(cellData -> cellData.getValue().usernameProperty());
+        scoreColumn.setCellValueFactory(cellData -> cellData.getValue().scoreProperty());
 
         ScoreDAO scoreDAO = new ScoreDAO();
         leaderboardTable.setItems(FXCollections.observableArrayList(scoreDAO.getLeaderboard()));
