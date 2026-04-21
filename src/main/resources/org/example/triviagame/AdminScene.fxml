@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"> <!-- fx:controller="CONTROLLER_NAME" (Put back in to the left once a controller is made) -->
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.triviagame.AdminSceneController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -34,10 +33,7 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="600.0" spacing="25.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Add Category" />
-                        <Button mnemonicParsing="false" text="Remove Category" />
-                      <Button mnemonicParsing="false" text="Create Question" />
-                        <Button mnemonicParsing="false" text="Delete Question" />
+                        <Button mnemonicParsing="false" onAction="#handleGoToQuestionTools" text="Go to Question Tools" />
                      </children>
                   </HBox>
                   <Label layoutX="10.0" layoutY="10.0" text="User Management Tools:">
@@ -47,9 +43,7 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="30.0" prefHeight="47.0" prefWidth="600.0" spacing="25.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Promote User" />
-                        <Button mnemonicParsing="false" text="Demote User" />
-                        <Button mnemonicParsing="false" text="Delete User" />
+                        <Button mnemonicParsing="false" onAction="#handleGoToUserTools" text="Go to User Tools" />
                      </children>
                   </HBox>
                   <Label text="Leaderboard Management Tools:">
@@ -59,7 +53,7 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="97.0" prefHeight="47.0" prefWidth="600.0" spacing="25.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Delete Leaderboard Entry" />
+                        <Button mnemonicParsing="false" onAction="#handleBoardTools" text="Go to Leaderboard Tools" />
                      </children>
                      <opaqueInsets>
                         <Insets />
