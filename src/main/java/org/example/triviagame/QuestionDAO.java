@@ -109,4 +109,37 @@ public class QuestionDAO {
             return rs.next() ? rs.getInt(1) : -1;
         } catch (Exception e) { return -1; }
     }
+
+    /**
+     * Retrieves all trivia questions from the database, wrapping each record
+     * into a {@link Question} model object.
+     *
+     * This method fulfills the "Read" requirement by fetching the question text,
+     * all four multiple-choice options, and the correct answer for every record
+     * in the QUESTIONS table.
+     *
+     * @return A {@link List} of {@link Question} objects containing full question data.
+     */
+    public List<Question> getAllQuestions() {
+        List<Question> list = new ArrayList<>();
+        String sql = "SELECT * FROM QUESTIONS";
+        try (Connection conn = DatabaseManager.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                // Wrap each database row into a Question object
+                Question q = new Question(
+                        rs.getString("question_text"),
+                        rs.getString("option_a"),
+                        rs.getString("option_b"),
+                        rs.getString("option_c"),
+                        rs.getString("option_d"),
+                        rs.getString("correct_answer")
+                );
+                list.add(q);
+            }
+        } catch (Exception e) { e.printStackTrace(); }
+        return list;
+    }
 }
