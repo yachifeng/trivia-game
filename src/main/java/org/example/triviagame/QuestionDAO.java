@@ -38,4 +38,21 @@ public class QuestionDAO {
         } catch (Exception e) { return false; }
     }
 
+    /**
+     * 2. Update
+     * Updates the text of an existing question identified by its unique ID.
+     *
+     * @param id      The unique ID of the question to be updated.
+     * @param newText The new text content for the question.
+     * @return true if the update was successful; false otherwise.
+     */
+    public boolean updateQuestionText(int id, String newText) {
+        String sql = "UPDATE QUESTIONS SET question_text = ? WHERE id = ?";
+        try (Connection conn = DatabaseManager.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, newText);
+            pstmt.setInt(2, id);
+            return pstmt.executeUpdate() > 0;
+        } catch (Exception e) { return false; }
+    }
+
 }
