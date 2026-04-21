@@ -71,4 +71,16 @@ public class QuestionDAO {
         } catch (Exception e) { return false; }
     }
 
+    /**
+     * Retrieves the ID of the last row inserted into the database session.
+     * This helper method is primarily used for unit testing purposes.
+     *
+     * @return The ID of the last inserted row, or -1 if an error occurs.
+     */
+    public int getLastInsertedId() {
+        try (Connection conn = DatabaseManager.getConnection(); Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT last_insert_rowid()")) {
+            return rs.next() ? rs.getInt(1) : -1;
+        } catch (Exception e) { return -1; }
+    }
 }
