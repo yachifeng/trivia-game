@@ -88,4 +88,42 @@ public class ScoreDAO {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Add-on method to view leaderboard and connect user scores with leaderboard display. Since scoreDAO class handles
+     * scores issues such as inserts and reading, it should also send data back to the leaderboard for display from
+     * our database.
+     *
+     * @return leaderboard as a list
+     */
+    public List<LeaderboardEntry> getLeaderboard() {
+        List<LeaderboardEntry> leaderboard = new ArrayList<>();
+
+        String sql = """
+        SELECT U.username, MAX(S.score) AS best_score
+        FROM SCORES S
+        JOIN USERS U ON S.user_id = U.id
+        GROUP BY U.id, U.username
+        ORDER BY best_score DESC
+    """;
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            int rank = 1;
+            while (rs.next()) {
+                leaderboard.add(new LeaderboardEntry(
+                        rank++,
+                        rs.getString("username"),
+                        rs.getInt("best_score")
+                ));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return leaderboard;
+    }
 }
