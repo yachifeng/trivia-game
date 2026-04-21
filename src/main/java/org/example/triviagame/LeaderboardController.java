@@ -1,5 +1,6 @@
 package org.example.triviagame;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -32,6 +33,13 @@ public class LeaderboardController {
     // This will initialize the leaderboard scene and have the display logic.
     public void initialize() {
         System.out.println("Leaderboard scene loaded");
+        rankColumn.setCellValueFactory(cellData -> cellData.getValue().getRank());
+        usernameColumn.setCellValueFactory(cellData -> cellData.getValue().getUsername());
+        scoreColumn.setCellValueFactory(cellData -> cellData.getValue().getScore());
+
+        ScoreDAO scoreDAO = new ScoreDAO();
+        leaderboardTable.setItems(FXCollections.observableArrayList(scoreDAO.getLeaderboard()));
+
     }
 
     @FXML
