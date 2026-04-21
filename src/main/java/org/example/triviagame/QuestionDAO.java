@@ -1,5 +1,7 @@
 package org.example.triviagame;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * [Manages the data access operations for the QUESTIONS table,
@@ -12,22 +14,17 @@ import java.sql.*;
 
 public class QuestionDAO {
     /**
-     * 1. Insert
-     * Inserts a new trivia question into the database
-     * with its category and multiple-choice options.
-     *
-     * @param categoryId The ID of the category this question belongs to.
-     * @param text       The actual text of the trivia question.
-     * @param a          The text for option A.
-     * @param b          The text for option B.
-     * @param c          The text for option C.
-     * @param d          The text for option D.
-     * @param answer     The string representation of the correct answer (e.g., "A", "B", "C", or "D").
-     * @return true if the insertion was successful; false otherwise.
+     * 1. Create (Insert)
+     * Inserts a new trivia question and returns its generated primary key.
+     * * @return The newly generated ID, or -1 if the insertion failed.
      */
-    public boolean insertQuestion(int categoryId, String text, String a, String b, String c, String d, String answer) {
+    public int insertQuestion(int categoryId, String text, String a, String b, String c, String d, String answer) {
         String sql = "INSERT INTO QUESTIONS(category_id, question_text, option_a, option_b, option_c, option_d, correct_answer) VALUES(?,?,?,?,?,?,?)";
-        try (Connection conn = DatabaseManager.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+        // Using Statement.RETURN_GENERATED_KEYS to retrieve the auto-incremented ID
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
             pstmt.setInt(1, categoryId);
             pstmt.setString(2, text);
             pstmt.setString(3, a);
@@ -35,12 +32,41 @@ public class QuestionDAO {
             pstmt.setString(5, c);
             pstmt.setString(6, d);
             pstmt.setString(7, answer);
-            return pstmt.executeUpdate() > 0;
-        } catch (Exception e) { return false; }
+
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows > 0) {
+                try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        return rs.getInt(1); // Success: returns the actual database ID
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1; // Returns -1 upon failure
     }
 
     /**
-     * 2. Update
+     * 2. Read
+     * Reads all question texts from the database.
+     * @return A list of question strings.
+     */
+    public List<String> getAllQuestionTexts() {
+        List<String> questions = new ArrayList<>();
+        String sql = "SELECT question_text FROM QUESTIONS";
+        try (Connection conn = DatabaseManager.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                questions.add(rs.getString("question_text"));
+            }
+        } catch (Exception e) { e.printStackTrace(); }
+        return questions;
+    }
+
+    /**
+     * 3. Update
      * Updates the text of an existing question identified by its unique ID.
      *
      * @param id      The unique ID of the question to be updated.
@@ -57,7 +83,7 @@ public class QuestionDAO {
     }
 
     /**
-     * 3. Delete
+     * 4. Delete
      * Permanently removes a question from the database based on its unique ID.
      *
      * @param id The unique ID of the question to be deleted.
