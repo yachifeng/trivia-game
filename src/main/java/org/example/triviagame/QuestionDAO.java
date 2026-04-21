@@ -9,6 +9,7 @@ import java.sql.*;
  * @version 21.0.10
  * @since 4/14/26
  */
+
 public class QuestionDAO {
     /**
      * 1. Insert
@@ -51,6 +52,21 @@ public class QuestionDAO {
         try (Connection conn = DatabaseManager.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, newText);
             pstmt.setInt(2, id);
+            return pstmt.executeUpdate() > 0;
+        } catch (Exception e) { return false; }
+    }
+
+    /**
+     * 3. Delete
+     * Permanently removes a question from the database based on its unique ID.
+     *
+     * @param id The unique ID of the question to be deleted.
+     * @return true if the deletion was successful; false otherwise.
+     */
+    public boolean deleteQuestion(int id) {
+        String sql = "DELETE FROM QUESTIONS WHERE id = ?";
+        try (Connection conn = DatabaseManager.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
             return pstmt.executeUpdate() > 0;
         } catch (Exception e) { return false; }
     }
