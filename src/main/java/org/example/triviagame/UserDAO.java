@@ -97,4 +97,33 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 5. getUserRoles
+     * It will retrieve the user's role from the database and return it.
+     *
+     * @param username and password of the username to retrieve the role.
+     *
+     */
+    public String getUserRole(String username, String password) {
+        String sql = "SELECT role FROM USERS WHERE username = ? AND password = ?";
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString("role");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null; // if user is not found
+    }
 }
