@@ -14,6 +14,11 @@ public class SceneTest extends Application {
 
     @Override
     public void start(Stage stage) {
+
+        // Initializes and populates database with sample data <- Remove both lines whenever necessary
+        DatabaseManager.initializeDatabase();
+        DatabaseManager.seedTestData();
+
         stage.setTitle(TITLE);
         stage.setScene(SceneFactory.create(SceneType.LEADERBOARD)); // <-- Change scene to load here
         stage.show();
