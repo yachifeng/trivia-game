@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
- * @author Anthony Ou
- * @version 0.1.0
- * @since 4/13/26
+ * @author Anthony Ou, Yachi Feng
+ * @version 0.2.0
+ * @since 4/22/26
  *
  * Unit test for the ScoreDAO class
  */
