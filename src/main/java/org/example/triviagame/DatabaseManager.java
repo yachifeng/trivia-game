@@ -67,4 +67,37 @@ public class DatabaseManager {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Temporal method to test database population and data retrieval for the leaderboard. TODO: REMOVE ALL THIS
+     */
+    public static void seedTestData() {
+        try (Connection conn = DatabaseManager.getConnection();
+             Statement stmt = conn.createStatement()) {
+
+            // Clear old data
+            stmt.executeUpdate("DELETE FROM SCORES");
+            stmt.executeUpdate("DELETE FROM USERS");
+
+            // Reset auto-increment counters
+            stmt.executeUpdate("DELETE FROM sqlite_sequence WHERE name='USERS'");
+            stmt.executeUpdate("DELETE FROM sqlite_sequence WHERE name='SCORES'");
+
+            // Insert users
+            stmt.executeUpdate("INSERT INTO USERS(username, password, role) VALUES ('Anthony', 'pass', 'user')");
+            stmt.executeUpdate("INSERT INTO USERS(username, password, role) VALUES ('Kaleb', 'pass', 'user')");
+            stmt.executeUpdate("INSERT INTO USERS(username, password, role) VALUES ('Yachi', 'pass', 'user')");
+
+            // Insert scores
+            stmt.executeUpdate("INSERT INTO SCORES(user_id, score) VALUES (1, 100)");
+            stmt.executeUpdate("INSERT INTO SCORES(user_id, score) VALUES (1, 80)");
+            stmt.executeUpdate("INSERT INTO SCORES(user_id, score) VALUES (2, 90)");
+            stmt.executeUpdate("INSERT INTO SCORES(user_id, score) VALUES (3, 70)");
+
+            System.out.println("Seed populated");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

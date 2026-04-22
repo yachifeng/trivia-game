@@ -1,7 +1,9 @@
 package org.example.triviagame;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  * Class model that bridges between the database to leaderboard entries which will be used by the leaderboard
@@ -34,5 +36,17 @@ public class LeaderboardEntry {
 
     public int getScore() {
         return score.get();
+    }
+
+    public IntegerProperty rankProperty() {
+        return rank;
+    }
+
+    public StringProperty usernameProperty() {
+        return username;
+    }
+
+    public IntegerProperty scoreProperty() {
+        return score;
     }
 }
