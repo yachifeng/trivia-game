@@ -20,7 +20,7 @@ public class SceneTest extends Application {
         DatabaseManager.seedTestData();
 
         stage.setTitle(TITLE);
-        stage.setScene(SceneFactory.create(SceneType.LEADERBOARD)); // <-- Change scene to load here
+        stage.setScene(SceneFactory.create(SceneType.ADMINTOOLS)); // <-- Change scene to load here
         stage.show();
     }
     /**
