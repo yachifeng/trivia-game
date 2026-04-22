@@ -1,6 +1,4 @@
 package org.example.triviagame;
-
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -11,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
- * @author Anthony Ou
- * @version 0.1.0
- * @since 4/13/26
+ * @author Anthony Ou, Yachi Feng
+ * @version 0.2.0
+ * @since 4/22/26
  *
  * Unit test for the ScoreDAO class
  */
@@ -71,5 +69,37 @@ public class ScoreDAOTest{
 
     }
 
+    /**
+     * Tests the update function of ScoreDAO.
+     * Verifies that an existing score can be modified and correctly retrieved.
+     */
+    @Test
+    public void testUpdateScore() {
+        int testUserId = 1;
+        scoreDAO.insertScore(testUserId, 70);
 
+        // Update the score we just inserted
+        scoreDAO.updateScore(testUserId, 95);
+
+        List<ScoreRecord> scores = scoreDAO.getUserScores(testUserId);
+        assertFalse(scores.isEmpty(), "Score list should not be empty.");
+        assertEquals(95, scores.get(0).getScore(), "The most recent score should be updated to 95.");
+    }
+
+    /**
+     * Tests the delete function of ScoreDAO.
+     * Verifies that all score records for a user are removed correctly.
+     */
+    @Test
+    public void testDeleteScores() {
+        int testUserId = 1;
+        scoreDAO.insertScore(testUserId, 88);
+
+        // Action: Delete the scores
+        scoreDAO.deleteScoresByUser(testUserId);
+
+        // Verification: The list should be empty
+        List<ScoreRecord> scores = scoreDAO.getUserScores(testUserId);
+        assertTrue(scores.isEmpty(), "Score list should be empty after deletion.");
+    }
 }

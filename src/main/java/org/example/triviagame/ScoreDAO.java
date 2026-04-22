@@ -12,13 +12,14 @@ import java.util.List;
  * Provides Data Access Object (DAO) methods for managing quiz score history,
  * including inserting and retrieving user quiz results through the database.
  *
- * @author Anthony Ou
- * @version 1.0
- * @since 4/12/26
+ * @author Anthony Ou, Yachi Feng
+ * @version 0.2.0
+ * @since 4/22/26
  */
 
 public class ScoreDAO {
     /**
+     * 1. Create (Insert)
      * Inserts a new score record for the user.
      *
      * @param userId the ID of the user
@@ -40,6 +41,7 @@ public class ScoreDAO {
     }
 
     /**
+     * 2. Read
      * Retrieves all quiz score records for a specific user,
      * ordered by most recent attempts.
      *
@@ -70,6 +72,34 @@ public class ScoreDAO {
     }
 
     /**
+     * 3. Update
+     * Updates the most recent score record for a specific user.
+     * This method identifies the record by finding the maximum date_taken
+     * associated with the given user ID.
+     *
+     * @param userId the ID of the user
+     * @param newScore the updated score value
+     */
+    public void updateScore(int userId, int newScore) {
+        String sql = "UPDATE SCORES SET score = ? " +
+                "WHERE user_id = ? " +
+                "AND date_taken = (SELECT MAX(date_taken) FROM SCORES WHERE user_id = ?)";
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, newScore);
+            pstmt.setInt(2, userId);
+            pstmt.setInt(3, userId);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 4. Delete
      * Deletes all score records associated with a specific user.
      * This method is primarily used for testing purposes.
      *
