@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.triviagame.GamePlayController" style="-fx-background-color: #f4f4f4;">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label fx:id="questionLabel" text="Loading Question..." wrapText="true"
+           style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <GridPane vgap="10" hgap="10" alignment="CENTER">
+        <Button fx:id="btnA" text="Option A" onAction="#handleAnswer" prefWidth="200"/>
+        <Button fx:id="btnB" text="Option B" onAction="#handleAnswer" prefWidth="200" GridPane.columnIndex="1"/>
+        <Button fx:id="btnC" text="Option C" onAction="#handleAnswer" prefWidth="200" GridPane.rowIndex="1"/>
+        <Button fx:id="btnD" text="Option D" onAction="#handleAnswer" prefWidth="200" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <Label fx:id="statusLabel" text="Select an answer!"/>
+</VBox>
