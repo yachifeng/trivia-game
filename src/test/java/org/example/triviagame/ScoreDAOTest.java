@@ -102,4 +102,19 @@ public class ScoreDAOTest{
         List<ScoreRecord> scores = scoreDAO.getUserScores(testUserId);
         assertTrue(scores.isEmpty(), "Score list should be empty after deletion.");
     }
+
+
+    /**
+     * Test behavior of ScoreDAO on retrieving scores for new users.
+     * This will verify the user with no existing score records return as empty list.
+     */
+    @Test
+    public void testNewUserNoScores() {
+        int testUserId = 999;
+
+        List<ScoreRecord> scores = scoreDAO.getUserScores(testUserId);
+
+        assertTrue(scores.isEmpty(), "Scores should be left empty for new users.");
+
+    }
 }
