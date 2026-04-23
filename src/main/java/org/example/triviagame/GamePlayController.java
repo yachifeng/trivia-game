@@ -8,7 +8,7 @@ import javafx.event.ActionEvent;
  * Controller class for the Gameplay Scene, managing the user interface
  * and interaction logic for trivia questions.
  *
- * @author Yachi Feng
+ * @author Yachi Feng, Anthony Ou
  * @version 21.0.10
  * @since 4/22/26
  */
@@ -55,10 +55,10 @@ public class GamePlayController {
 
         // Basic logic for answer validation and UI feedback
         if (selectedAnswer.equals("Data Access Object")) {
-            statusLabel.setText("Correct!");
+            statusLabel.setText("Ding Ding Ding! You are correct!");
             statusLabel.setStyle("-fx-text-fill: green;");
         } else {
-            statusLabel.setText("Wrong answer, try again.");
+            statusLabel.setText("Incorrect, Let's try that again. You can do it!!");
             statusLabel.setStyle("-fx-text-fill: red;");
         }
     }
