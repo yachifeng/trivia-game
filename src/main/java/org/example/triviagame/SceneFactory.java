@@ -19,6 +19,9 @@ public class SceneFactory {
             case LOGIN -> loadScene("/org/example/triviagame/LoginScene.fxml", "Login");
             case ADMINTOOLS -> loadScene("/org/example/triviagame/AdminScene.fxml", "Admin Tools");
             case LEADERBOARD -> loadScene("/org/example/triviagame/LeaderboardScene.fxml", "Leaderboard");
+            case USERMANAGETOOLS -> loadScene("/org/example/triviagame/UserManagementScene.fxml", "User Tools");
+            case QUESTIONTOOLS -> loadScene("/org/example/triviagame/QuestionToolsScene.fxml", "Question Tools");
+            case BOARDMANAGETOOLS -> loadScene("/org/example/triviagame/LeaderBoardManagementScene.fxml", "Board Management");
             case GAMEPLAY -> loadScene("/org/example/triviagame/GamePlayScene.fxml", "Gameplay");
             case GAMEOVER -> loadScene("/org/example/triviagame/GameOverScene.fxml", "Game Over");
         };
@@ -40,48 +43,4 @@ public class SceneFactory {
             throw new RuntimeException(e);
         }
     }
-
-
-    /**
-     * Builds the scene for login/register. Pulls the scene information from LoginScene.fxml
-     * @return the working scene
-
-    private static Scene buildLogin(){
-
-        FXMLLoader loginLoader = new FXMLLoader(SceneFactory.class.getResource("/org/example/triviagame/LoginScene.fxml"));
-        try{
-            System.out.println(SceneFactory.class.getResource("/org/example/triviagame/LoginScene.fxml"));
-            Parent root = loginLoader.load();
-            return new Scene(root);
-        } catch(IOException e){
-            System.out.println("Failed to load Login Scene");
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static Scene buildAdminTools(){
-
-        FXMLLoader loginLoader = new FXMLLoader(SceneFactory.class.getResource("/org/example/triviagame/AdminScene.fxml"));
-        try{
-            System.out.println(SceneFactory.class.getResource("/org/example/triviagame/AdminScene.fxml"));
-            Parent root = loginLoader.load();
-            return new Scene(root);
-        } catch(IOException e){
-            System.out.println("Failed to load Login Scene");
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static Scene buildLeaderboard() {
-        FXMLLoader loginLoader = new FXMLLoader(SceneFactory.class.getResource("/org/example/triviagame/LeaderboardScene.fxml"));
-        try {
-            System.out.println(SceneFactory.class.getResource("/org/example/triviagame/LeaderboardScene.fxml"));
-            Parent root = loginLoader.load();
-            return new Scene(root);
-        } catch (IOException e) {
-            System.out.println("Failed to load Leaderboard Scene");
-            throw new RuntimeException(e);
-        }
-    }
-    */
 }
