@@ -10,7 +10,7 @@ import javafx.stage.Stage;
  * @since 4/12/2026
  */
 public class GameLauncher extends Application {
-    private static final String TITLE = "Scene Tester ";
+    private static final String TITLE = "Title Screen";
 
     @Override
     public void start(Stage stage) {

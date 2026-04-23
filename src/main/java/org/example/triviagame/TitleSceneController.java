@@ -2,23 +2,26 @@ package org.example.triviagame;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.stage.Stage;
+import javafx.scene.control.Label;
 
 import javax.swing.*;
+import static org.example.triviagame.SceneSwitcher.switchScene;
 
 /**
- * This is a controller for the Admin Scene to navigate through the tools.
+ * This is a controller for the title screen, both admins and user functions are in here. But only some are accessible by a standard user.
  *
  * @author KMB
- * @version 0.1.0
+ * @version 0.2.0
  * @since 4/21/2026
  */
 public class TitleSceneController {
+
     @FXML
-    private void switchScene(ActionEvent event, SceneType type) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(SceneFactory.create(type));
+    private Label usernameLabel;
+
+    @FXML //JavaFX calls initialize when an FXML scene is loaded, this allows us to initialize UI elements that might change, like a username display.
+    public void initialize() {
+        usernameLabel.setText(Session.getUser());
     }
 
     @FXML

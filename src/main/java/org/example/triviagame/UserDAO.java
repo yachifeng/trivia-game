@@ -126,4 +126,32 @@ public class UserDAO {
 
         return null; // if user is not found
     }
+
+
+    /**
+     * KMB
+     * 6. getUserIdByUsername
+     * Needed a method to pull userID for selected entry deletion. This method does exactly that.
+     * @param username
+     * @return
+     */
+    public static int getUserIdByUsername(String username) {
+        String sql = "SELECT id FROM USERS WHERE username = ?";
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("id");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return -1; // if user is not found
+    }
 }

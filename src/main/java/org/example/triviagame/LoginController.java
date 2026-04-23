@@ -29,6 +29,8 @@ public class LoginController {
         String user = usernameField.getText();
         String pass = passwordField.getText();
         if (userDAO.validateLogin(user, pass)) {
+            Session.setUser(user); //Stores which user is logged in for the session
+
             statusLabel.setText("Login Successful!");
             statusLabel.setTextFill(javafx.scene.paint.Color.GREEN);
             if(userDAO.getUserRole(usernameField.getText(), passwordField.getText()).equals("admin")){
