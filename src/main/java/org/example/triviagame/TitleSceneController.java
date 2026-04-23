@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-import javax.swing.*;
 import static org.example.triviagame.SceneSwitcher.switchScene;
 
 /**
