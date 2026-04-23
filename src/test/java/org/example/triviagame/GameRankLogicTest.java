@@ -9,25 +9,30 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author Yachi Feng
  * @version 21.0.10
- * @since 4/22/26
+ * @since 4/23/26
  */
 public class GameRankLogicTest {
     /**
      * Verifies that the rating logic correctly categorizes scores into
-     * Excellent, Good, and Keep Practicing based on predefined thresholds.
+     * Excellent, Good, and Keep Practicing based on predefined thresholds,
+     * including boundary value analysis.
      */
     @Test
     public void testGetPerformanceRating() {
-        // Logic thresholds: >= 80: Excellent, 50-79: Good, <50: Keep Practicing
+        // Thresholds: >= 80: Excellent, 50-79: Good, <50: Keep Practicing
 
-        // Test high score
-        assertEquals("Excellent", getRating(90), "Scores 80 and above should be Excellent.");
+        // --- Test Excellent Range (>= 80) ---
+        assertEquals("Excellent", getRating(90), "Scores above 80 should be Excellent.");
+        assertEquals("Excellent", getRating(80), "Score of exactly 80 should be Excellent.");
 
-        // Test mid-range score
-        assertEquals("Good", getRating(70), "Scores between 50 and 79 should be Good.");
+        // --- Test Good Range (50-79) ---
+        assertEquals("Good", getRating(79), "Score just below 80 should be Good.");
+        assertEquals("Good", getRating(70), "Mid-range score should be Good.");
+        assertEquals("Good", getRating(50), "Score of exactly 50 should be Good.");
 
-        // Test low score
-        assertEquals("Keep Practicing", getRating(30), "Scores below 50 should be Keep Practicing.");
+        // --- Test Keep Practicing Range (< 50) ---
+        assertEquals("Keep Practicing", getRating(49), "Score just below 50 should be Keep Practicing.");
+        assertEquals("Keep Practicing", getRating(30), "Low scores should be Keep Practicing.");
     }
 
     /**
@@ -43,5 +48,3 @@ public class GameRankLogicTest {
         return "Keep Practicing";
     }
 }
-
-
