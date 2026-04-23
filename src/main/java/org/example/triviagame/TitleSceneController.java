@@ -4,6 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.stage.Stage;
+
+import javax.swing.*;
+
 /**
  * This is a controller for the Admin Scene to navigate through the tools.
  *
@@ -11,7 +14,7 @@ import javafx.stage.Stage;
  * @version 0.1.0
  * @since 4/21/2026
  */
-public class AdminSceneController {
+public class TitleSceneController {
     @FXML
     private void switchScene(ActionEvent event, SceneType type) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -37,4 +40,14 @@ public class AdminSceneController {
     private void handleGoBack(ActionEvent event) {
         switchScene(event, SceneType.ADMINTOOLS);
     } //Currently being used for all tool scenes.
+
+    @FXML
+    private void handlePlayGame(ActionEvent event){
+        switchScene(event, SceneType.GAMEPLAY);
+    }
+
+    @FXML
+    private void handleGoToBoard(ActionEvent event){
+        switchScene(event, SceneType.LEADERBOARD);
+    }
 }

@@ -16,6 +16,7 @@ public enum SceneType {
     USERMANAGETOOLS,
     BOARDMANAGETOOLS,
     GAMEPLAY,
-    GAMEOVER
+    GAMEOVER,
+    TITLE
 }
 

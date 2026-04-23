@@ -1,4 +1,5 @@
 package org.example.triviagame;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -8,9 +9,9 @@ import javafx.scene.control.TextField;
  * Controller class for the login scene,
  * handling user authentication and registration via UserDAO.
  *
- * @author Yachi Feng
- * @version 21.0.10
- * @since 4/14/26
+ * @author Yachi Feng, KMB
+ * @version 21.2.10
+ * @since 4/23/26
  */
 public class LoginController {
     @FXML private TextField usernameField;
@@ -24,12 +25,17 @@ public class LoginController {
      * Displays success or error messages to the user via the status label.
      */
     @FXML
-    private void handleLogin() {
+    private void handleLogin(ActionEvent event) {
         String user = usernameField.getText();
         String pass = passwordField.getText();
         if (userDAO.validateLogin(user, pass)) {
             statusLabel.setText("Login Successful!");
             statusLabel.setTextFill(javafx.scene.paint.Color.GREEN);
+            if(userDAO.getUserRole(usernameField.getText(), passwordField.getText()).equals("admin")){
+                SceneSwitcher.switchScene(event, SceneType.ADMINTOOLS);
+            }else{
+                SceneSwitcher.switchScene(event, SceneType.TITLE);
+            }
         } else {
             statusLabel.setText("Invalid username or password.");
         }

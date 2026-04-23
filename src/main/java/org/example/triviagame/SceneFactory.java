@@ -24,6 +24,7 @@ public class SceneFactory {
             case BOARDMANAGETOOLS -> loadScene("/org/example/triviagame/LeaderBoardManagementScene.fxml", "Board Management");
             case GAMEPLAY -> loadScene("/org/example/triviagame/GamePlayScene.fxml", "Gameplay");
             case GAMEOVER -> loadScene("/org/example/triviagame/GameOverScene.fxml", "Game Over");
+            case TITLE -> loadScene("/org/example/triviagame/TitleScene.fxml", "Title");
         };
     }
 
