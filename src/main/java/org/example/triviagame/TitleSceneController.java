@@ -40,11 +40,6 @@ public class TitleSceneController {
     }
 
     @FXML
-    private void handleGoBack(ActionEvent event) {
-        switchScene(event, SceneType.ADMINTOOLS);
-    } //Currently being used for all tool scenes.
-
-    @FXML
     private void handlePlayGame(ActionEvent event){
         switchScene(event, SceneType.GAMEPLAY);
     }

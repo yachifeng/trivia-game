@@ -37,6 +37,8 @@ public class LoginController {
             statusLabel.setTextFill(javafx.scene.paint.Color.GREEN);
             if(userDAO.getUserRole(usernameField.getText(), passwordField.getText()).equals("admin")){
                 SceneSwitcher.switchScene(event, SceneType.ADMINTOOLS);
+            }else if(userDAO.getUserRole(usernameField.getText(), passwordField.getText()).equals("moderator")){
+                SceneSwitcher.switchScene(event, SceneType.MODERATORTOOLS);
             }else{
                 SceneSwitcher.switchScene(event, SceneType.TITLE);
             }

@@ -13,13 +13,14 @@ import static org.example.triviagame.SceneSwitcher.switchScene;
 
 
 /**
- * [Brief Description of this class]
+ * Controller for the Admin User Tools
  *
  * @author KMB
  * @version 0.1.0
  * @since 4/23/2026
  */
 public class UserManagementController {
+
     UserDAO users = new UserDAO();
 
     @FXML
