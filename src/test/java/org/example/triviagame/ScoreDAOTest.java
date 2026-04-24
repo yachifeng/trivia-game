@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -19,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ScoreDAOTest{
 
     private ScoreDAO scoreDAO = new ScoreDAO();
-
 
     /**
      * Initializes database before any tests are executed
@@ -57,7 +57,7 @@ public class ScoreDAOTest{
         List<ScoreRecord> scores = scoreDAO.getUserScores(1);
 
         // to verify results
-        assertNotNull(scores, "List of scores should not be null.");
+        assertNotNull(scores, "Scores list should not be null.");
         assertTrue(scores.size() >= 2, "Retrieve at least 2 scores.");
 
         assertTrue(scores.stream().anyMatch(score -> score.getScore() == 70),
