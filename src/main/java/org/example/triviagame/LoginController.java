@@ -33,7 +33,7 @@ public class LoginController {
           
             statusLabel.setText("You have successfully logged in. Welcome back!");
             statusLabel.setTextFill(javafx.scene.paint.Color.GREEN);
-            if(userDAO.getUserRole(usernameField.getText(), passwordField.getText()).equals("admin")){
+            if(userDAO.getUserRole(usernameField.getText()).equals("admin")){
                 SceneSwitcher.switchScene(event, SceneType.ADMINTOOLS);
             }else{
                 SceneSwitcher.switchScene(event, SceneType.TITLE);
