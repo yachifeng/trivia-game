@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
  * Controller class for the login scene,
  * handling user authentication and registration via UserDAO.
  *
- * @author Yachi Feng, KMB
+ * @author Yachi Feng, Anthony Ou, KMB
  * @version 21.2.10
  * @since 4/23/26
  */
@@ -30,8 +30,8 @@ public class LoginController {
         String pass = passwordField.getText();
         if (userDAO.validateLogin(user, pass)) {
             Session.setUser(user); //Stores which user is logged in for the session
-
-            statusLabel.setText("Login Successful!");
+          
+            statusLabel.setText("You have successfully logged in. Welcome back!");
             statusLabel.setTextFill(javafx.scene.paint.Color.GREEN);
             if(userDAO.getUserRole(usernameField.getText(), passwordField.getText()).equals("admin")){
                 SceneSwitcher.switchScene(event, SceneType.ADMINTOOLS);
@@ -39,7 +39,7 @@ public class LoginController {
                 SceneSwitcher.switchScene(event, SceneType.TITLE);
             }
         } else {
-            statusLabel.setText("Invalid username or password.");
+            statusLabel.setText("Incorrect username or password. Please try again.");
         }
     }
 
@@ -57,6 +57,14 @@ public class LoginController {
         } else {
             statusLabel.setText("Registration failed.");
         }
+    }
+
+    /**
+     * Displays message when user chooses to return to main menu.
+     */
+    @FXML
+    private void handleReturnMenu(ActionEvent event) {
+        System.out.println("Returning to Main Menu. Please select your option.");
     }
 }
 
