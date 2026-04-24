@@ -1,6 +1,7 @@
 package org.example.triviagame;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -20,6 +21,8 @@ import static org.example.triviagame.SceneSwitcher.switchScene;
  * @since 4/23/2026
  */
 public class UserManagementController {
+
+    private final ObservableList<UserEntry> userData = FXCollections.observableArrayList();
 
     UserDAO users = new UserDAO();
 
@@ -41,7 +44,7 @@ public class UserManagementController {
         }
 
         users.updateRole(selected.getUsername(), "moderator");
-        loadUserData();
+        selected.setRole("moderator");
     }
 
     @FXML
@@ -57,7 +60,7 @@ public class UserManagementController {
         }
 
         users.updateRole(selected.getUsername(), "user");
-        loadUserData();
+        selected.setRole("user");
     }
 
     @FXML
@@ -73,7 +76,7 @@ public class UserManagementController {
         }
 
         users.deleteUser(selected.getUsername());
-        loadUserData();
+        userData.remove(selected);
     }
 
     @FXML
@@ -90,14 +93,15 @@ public class UserManagementController {
 
     private void loadUserData(){
         List<UserEntry> data = users.getAllUsers();
-        userTable.setItems(FXCollections.observableArrayList(data));
+        userData.setAll(data);
     }
 
     @FXML
     public void initialize(){
-        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
+        usernameColumn.setCellValueFactory(cellData -> cellData.getValue().usernameProperty());
+        roleColumn.setCellValueFactory(cellData -> cellData.getValue().roleProperty());
 
+        userTable.setItems(userData);
         loadUserData();
     }
 
