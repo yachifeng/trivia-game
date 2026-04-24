@@ -1,8 +1,8 @@
 package org.example.triviagame;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,14 +13,13 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 0.2.0
  * @since 4/22/26
  *
- * Unit test for the ScoreDAO class
+ * Unit test for the ScoreDAO class.
  */
 
 
 public class ScoreDAOTest{
 
     private ScoreDAO scoreDAO = new ScoreDAO();
-
 
     /**
      * Initializes database before any tests are executed
@@ -43,7 +42,7 @@ public class ScoreDAOTest{
 
 
     /**
-     * To test insert and retireval functions of ScoreDAO.
+     * To test insert and retrieval functions of ScoreDAO.
      * Verifies the scores inserted into the database so
      * it can successfully retrieve and match expected values.
      */
@@ -58,7 +57,7 @@ public class ScoreDAOTest{
         List<ScoreRecord> scores = scoreDAO.getUserScores(1);
 
         // to verify results
-        assertNotNull(scores, "List of scores should not be null.");
+        assertNotNull(scores, "Scores list should not be null.");
         assertTrue(scores.size() >= 2, "Retrieve at least 2 scores.");
 
         assertTrue(scores.stream().anyMatch(score -> score.getScore() == 70),
@@ -68,6 +67,7 @@ public class ScoreDAOTest{
                 "Score list should contain 80.");
 
     }
+
 
     /**
      * Tests the update function of ScoreDAO.
@@ -85,6 +85,7 @@ public class ScoreDAOTest{
         assertFalse(scores.isEmpty(), "Score list should not be empty.");
         assertEquals(95, scores.get(0).getScore(), "The most recent score should be updated to 95.");
     }
+
 
     /**
      * Tests the delete function of ScoreDAO.
