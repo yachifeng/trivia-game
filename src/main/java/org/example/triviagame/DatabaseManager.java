@@ -85,7 +85,7 @@ public class DatabaseManager {
 
             // Insert users
             stmt.executeUpdate("INSERT INTO USERS(username, password, role) VALUES ('Anthony', 'pass', 'user')");
-            stmt.executeUpdate("INSERT INTO USERS(username, password, role) VALUES ('Kaleb', 'pass', 'user')");
+            stmt.executeUpdate("INSERT INTO USERS(username, password, role) VALUES ('Kaleb', 'pass', 'admin')");
             stmt.executeUpdate("INSERT INTO USERS(username, password, role) VALUES ('Yachi', 'pass', 'user')");
 
             // Insert scores

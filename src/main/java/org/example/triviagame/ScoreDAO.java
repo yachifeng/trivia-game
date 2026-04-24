@@ -12,8 +12,8 @@ import java.util.List;
  * Provides Data Access Object (DAO) methods for managing quiz score history,
  * including inserting and retrieving user quiz results through the database.
  *
- * @author Anthony Ou, Yachi Feng
- * @version 0.2.0
+ * @author Anthony Ou, Yachi Feng, KMB
+ * @version 0.3.0
  * @since 4/22/26
  */
 
@@ -112,6 +112,27 @@ public class ScoreDAO {
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, userId);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 5. Delete by specific entry
+     * Mainly used for admin purposes, in case a specific entry needs to be removed from the board.
+     * @param user_id
+     * @param score
+     */
+    public static void deleteScoresByEntry(int user_id, int score) {
+        String sql = "DELETE FROM SCORES WHERE user_id = ? AND score = ?";
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, user_id);
+            pstmt.setInt(2, score);
             pstmt.executeUpdate();
 
         } catch (Exception e) {

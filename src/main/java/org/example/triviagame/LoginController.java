@@ -9,9 +9,9 @@ import javafx.scene.control.TextField;
  * Controller class for the login scene,
  * handling user authentication and registration via UserDAO.
  *
- * @author Yachi Feng, Anthony Ou
- * @version 21.0.10
- * @since 4/14/26
+ * @author Yachi Feng, Anthony Ou, KMB
+ * @version 21.2.10
+ * @since 4/23/26
  */
 public class LoginController {
     @FXML private TextField usernameField;
@@ -25,12 +25,19 @@ public class LoginController {
      * Displays success or error messages to the user via the status label.
      */
     @FXML
-    private void handleLogin() {
+    private void handleLogin(ActionEvent event) {
         String user = usernameField.getText();
         String pass = passwordField.getText();
         if (userDAO.validateLogin(user, pass)) {
+            Session.setUser(user); //Stores which user is logged in for the session
+          
             statusLabel.setText("You have successfully logged in. Welcome back!");
             statusLabel.setTextFill(javafx.scene.paint.Color.GREEN);
+            if(userDAO.getUserRole(usernameField.getText(), passwordField.getText()).equals("admin")){
+                SceneSwitcher.switchScene(event, SceneType.ADMINTOOLS);
+            }else{
+                SceneSwitcher.switchScene(event, SceneType.TITLE);
+            }
         } else {
             statusLabel.setText("Incorrect username or password. Please try again.");
         }

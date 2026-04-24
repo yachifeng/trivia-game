@@ -9,8 +9,8 @@ import javafx.stage.Stage;
  * @version 0.1.0
  * @since 4/12/2026
  */
-public class SceneTest extends Application {
-    private static final String TITLE = "Scene Tester ";
+public class GameLauncher extends Application {
+    private static final String TITLE = "Title Screen";
 
     @Override
     public void start(Stage stage) {
@@ -20,7 +20,7 @@ public class SceneTest extends Application {
         DatabaseManager.seedTestData();
 
         stage.setTitle(TITLE);
-        stage.setScene(SceneFactory.create(SceneType.ADMINTOOLS)); // <-- Change scene to load here
+        stage.setScene(SceneFactory.create(SceneType.LOGIN)); // <-- Change scene to load here
         stage.show();
     }
     /**
