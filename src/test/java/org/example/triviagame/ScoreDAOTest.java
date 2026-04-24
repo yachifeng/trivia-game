@@ -68,6 +68,7 @@ public class ScoreDAOTest{
 
     }
 
+
     /**
      * Tests the update function of ScoreDAO.
      * Verifies that an existing score can be modified and correctly retrieved.
@@ -84,6 +85,7 @@ public class ScoreDAOTest{
         assertFalse(scores.isEmpty(), "Score list should not be empty.");
         assertEquals(95, scores.get(0).getScore(), "The most recent score should be updated to 95.");
     }
+
 
     /**
      * Tests the delete function of ScoreDAO.
