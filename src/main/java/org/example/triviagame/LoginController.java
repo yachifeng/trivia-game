@@ -32,7 +32,7 @@ public class LoginController {
         if (userDAO.validateLogin(user, pass)) {
             Session.setUser(user); //Stores which user is logged in for the session
           
-            statusLabel.setText("You have successfully logged in. Welcome back!");
+            statusLabel.setText("You have successfully logged in. Welcome back!!");
             statusLabel.setTextFill(javafx.scene.paint.Color.GREEN);
             if(userDAO.getUserRole(usernameField.getText()).equals("admin")){
                 SceneSwitcher.switchScene(event, SceneType.ADMINTOOLS);
