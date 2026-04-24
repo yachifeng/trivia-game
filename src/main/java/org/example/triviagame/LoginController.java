@@ -1,4 +1,5 @@
 package org.example.triviagame;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -8,7 +9,7 @@ import javafx.scene.control.TextField;
  * Controller class for the login scene,
  * handling user authentication and registration via UserDAO.
  *
- * @author Yachi Feng
+ * @author Yachi Feng, Anthony Ou
  * @version 21.0.10
  * @since 4/14/26
  */
@@ -28,10 +29,10 @@ public class LoginController {
         String user = usernameField.getText();
         String pass = passwordField.getText();
         if (userDAO.validateLogin(user, pass)) {
-            statusLabel.setText("Login Successful!");
+            statusLabel.setText("You have successfully logged in. Welcome back!");
             statusLabel.setTextFill(javafx.scene.paint.Color.GREEN);
         } else {
-            statusLabel.setText("Invalid username or password.");
+            statusLabel.setText("Incorrect username or password. Please try again.");
         }
     }
 
@@ -49,6 +50,14 @@ public class LoginController {
         } else {
             statusLabel.setText("Registration failed.");
         }
+    }
+
+    /**
+     * Displays message when user chooses to return to main menu.
+     */
+    @FXML
+    private void handleReturnMenu(ActionEvent event) {
+        System.out.println("Returning to Main Menu. Please select your option.");
     }
 }
 
