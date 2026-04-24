@@ -11,13 +11,15 @@ import java.util.List;
 import static org.example.triviagame.SceneSwitcher.switchScene;
 
 /**
- * [Brief Description of this class]
+ * Controller for the Admin Leaderboard tools. Mostly just allows for the deletion of specific entries.
  *
  * @author KMB, Diego Borjas (The leaderboard display is copied from his file)
  * @version 0.1.0
  * @since 4/23/2026
  */
-public class BoardManagmentController {
+public class BoardManagementController {
+
+    UserDAO UserDAO = new UserDAO();
 
     @FXML
     private void handleDeleteSelected(){

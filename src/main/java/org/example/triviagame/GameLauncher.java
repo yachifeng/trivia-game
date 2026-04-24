@@ -3,7 +3,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- * Tester for running the scenes. Currently, requires manually changing the scene in code.
+ * Currently acts as the launcher for the whole program
  *
  * @author KMB
  * @version 0.1.0
