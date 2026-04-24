@@ -42,7 +42,7 @@ public class ScoreDAOTest{
 
 
     /**
-     * To test insert and retireval functions of ScoreDAO.
+     * To test insert and retrieval functions of ScoreDAO.
      * Verifies the scores inserted into the database so
      * it can successfully retrieve and match expected values.
      */
