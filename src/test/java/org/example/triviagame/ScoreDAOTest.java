@@ -118,4 +118,5 @@ public class ScoreDAOTest{
         assertTrue(scores.isEmpty(), "Scores should be left empty for new users.");
 
     }
+
 }
