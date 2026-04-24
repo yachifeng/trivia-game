@@ -14,12 +14,16 @@ import javafx.scene.control.TextField;
  * @version 21.2.10
  * @since 4/23/26
  */
+
+
 public class LoginController {
+
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private Label statusLabel;
 
     private final UserDAO userDAO = new UserDAO();
+
 
     /**
      * Handles the login button action by validating user credentials against the database.
