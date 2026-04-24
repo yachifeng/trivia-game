@@ -1,5 +1,7 @@
 package org.example.triviagame;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Provides Data Access Object (DAO) methods for managing user-related operations,
@@ -131,11 +133,12 @@ public class UserDAO {
     /**
      * KMB
      * 6. getUserIdByUsername
-     * Needed a method to pull userID for selected entry deletion. This method does exactly that.
+     * pulls user_id from the user table via username, to be used in leaderboard entry deletion.
+     * Needed because the "SCORES" table does not have a "Username" column
      * @param username
      * @return
      */
-    public static int getUserIdByUsername(String username) {
+    public int getUserIdByUsername(String username) {
         String sql = "SELECT id FROM USERS WHERE username = ?";
 
         try (Connection conn = DatabaseManager.getConnection();
@@ -153,5 +156,48 @@ public class UserDAO {
         }
 
         return -1; // if user is not found
+    }
+
+    /**
+     * KMB
+     * 7. getAllUsers
+     * pulls every user from the USERS table
+     */
+    public List<UserEntry> getAllUsers(){
+        List<UserEntry> users = new ArrayList<>();
+        String sql = "SELECT username, role FROM USERS";
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()){
+            while (rs.next()){
+                String username = rs.getString("username");
+                String role = rs.getString("role");
+
+                users.add(new UserEntry(username, role));
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return users;
+    }
+
+    /**
+     * KMB
+     * 8. updateRole
+     * Allows admins to promote/demote a user
+     */
+    public void updateRole(String username, String role){
+        String sql = "UPDATE USERS SET role = ? WHERE username = ?";
+
+        try (Connection conn = DatabaseManager.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setString(1, role);
+            pstmt.setString(2, username);
+            pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

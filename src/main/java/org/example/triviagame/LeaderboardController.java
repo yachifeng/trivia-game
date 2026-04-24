@@ -1,11 +1,14 @@
 package org.example.triviagame;
 
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.util.List;
+
+import static org.example.triviagame.SceneSwitcher.switchScene;
 
 /**
  * @Author Diego Borjas
@@ -55,7 +58,11 @@ public class LeaderboardController {
 
     @FXML
     // Back button which will allow the user to return to the previous scene and exit the leaderboard.
-    private void handleBack() {
-        System.out.println("Back button clicked");
+    private void handleBack(ActionEvent event) {
+        if(Session.getRole().equals("admin")){
+            switchScene(event, SceneType.ADMINTOOLS);
+        } else {
+            switchScene(event, SceneType.TITLE);
+        }
     }
 }
