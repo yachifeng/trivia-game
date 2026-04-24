@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 0.2.0
  * @since 4/22/26
  *
- * Unit test for the ScoreDAO class
+ * Unit test for the ScoreDAO class.
  */
 
 
