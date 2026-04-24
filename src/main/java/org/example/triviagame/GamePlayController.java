@@ -128,7 +128,7 @@ public class GamePlayController {
             statusLabel.setText("Correct!");
             statusLabel.setStyle("-fx-text-fill: green;");
         } else {
-            statusLabel.setText("Incorrect!");
+            statusLabel.setText("Incorrect, Let's try that again. You can do it and YES YOU CAN!!");
             statusLabel.setStyle("-fx-text-fill: red;");
         }
 
