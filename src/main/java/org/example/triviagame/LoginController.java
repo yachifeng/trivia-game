@@ -64,7 +64,7 @@ public class LoginController {
      */
     @FXML
     private void handleReturnMenu(ActionEvent event) {
-        System.out.println("Returning to Main Menu. Please select your option.");
+        System.out.println("Returning to Main Menu. Please select your option:");
     }
 }
 
