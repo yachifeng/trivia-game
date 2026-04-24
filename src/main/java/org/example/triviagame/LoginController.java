@@ -1,4 +1,5 @@
 package org.example.triviagame;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -58,6 +59,7 @@ public class LoginController {
             statusLabel.setText("Registration failed.");
         }
     }
+
 
     /**
      * Displays message when user chooses to return to main menu.
