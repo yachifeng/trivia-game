@@ -29,7 +29,7 @@ public class LoginController {
         String user = usernameField.getText();
         String pass = passwordField.getText();
         if (userDAO.validateLogin(user, pass)) {
-            String role = userDAO.getUserRole(user, pass);
+            String role = userDAO.getUserRole(user);
             Session.setUser(user);//Stores which user is logged in for the session
             Session.setRole(role);//Stores the role for the session
           
@@ -37,7 +37,7 @@ public class LoginController {
             statusLabel.setTextFill(javafx.scene.paint.Color.GREEN);
             if(userDAO.getUserRole(usernameField.getText()).equals("admin")){
                 SceneSwitcher.switchScene(event, SceneType.ADMINTOOLS);
-            }else if(userDAO.getUserRole(usernameField.getText(), passwordField.getText()).equals("moderator")){
+            }else if(userDAO.getUserRole(usernameField.getText()).equals("moderator")){
                 SceneSwitcher.switchScene(event, SceneType.MODERATORTOOLS);
             }else{
                 SceneSwitcher.switchScene(event, SceneType.TITLE);
