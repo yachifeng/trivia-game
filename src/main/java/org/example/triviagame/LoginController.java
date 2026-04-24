@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 
 /**
  * Controller class for the login scene,
- * handling user authentication and registration via UserDAO.
+ * handles user authentication and registration via UserDAO.
  *
  * @author Yachi Feng, Anthony Ou, KMB
  * @version 21.2.10
@@ -47,6 +47,7 @@ public class LoginController {
             statusLabel.setText("Incorrect username or password. Please try again.");
         }
     }
+
 
     /**
      * Handles the register button action by creating a new user account in the database.
