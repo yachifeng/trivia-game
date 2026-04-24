@@ -120,6 +120,7 @@ public class ScoreDAO {
     }
 
     /**
+     * KMB
      * 5. Delete by specific entry
      * Mainly used for admin purposes, in case a specific entry needs to be removed from the board.
      * @param user_id

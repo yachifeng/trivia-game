@@ -97,6 +97,26 @@ public class QuestionDAO {
         } catch (Exception e) { return false; }
     }
 
+    /**KBM
+     * 5. deleteByText
+     * Method to permanently removed a question from the database, using its question text field. For AdminTools
+     * In "real world" it would make more sense to use the delete by Id method above.
+     * Currently the question class has no way to retrieve that ID (or I looked over it)
+     * Writing this method required less refactoring than trying to make the above work in admintools.
+     * @param text the text of the question, there shouldn't be duplicate questions so this should be fine.
+     */
+    public void deleteQuestionByText(String text){
+        String sql = "DELETE FROM QUESTIONS WHERE question_text = ?";
+
+        try(Connection conn = DatabaseManager.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setString(1, text);
+            pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Retrieves the ID of the last row inserted into the database session.
      * This helper method is primarily used for unit testing purposes.
@@ -113,7 +133,6 @@ public class QuestionDAO {
     /**
      * Retrieves all trivia questions from the database, wrapping each record
      * into a {@link Question} model object.
-     *
      * This method fulfills the "Read" requirement by fetching the question text,
      * all four multiple-choice options, and the correct answer for every record
      * in the QUESTIONS table.

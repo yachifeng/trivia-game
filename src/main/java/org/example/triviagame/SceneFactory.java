@@ -25,6 +25,7 @@ public class SceneFactory {
             case GAMEPLAY -> loadScene("/org/example/triviagame/GamePlayScene.fxml", "Gameplay");
             case GAMEOVER -> loadScene("/org/example/triviagame/GameOverScene.fxml", "Game Over");
             case TITLE -> loadScene("/org/example/triviagame/TitleScene.fxml", "Title");
+            case MODERATORTOOLS -> loadScene("/org/example/triviagame/ModeratorScene.fxml", "Moderator Tools");
         };
     }
 
